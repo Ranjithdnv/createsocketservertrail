@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
  const io = new Server({
   cors: {
-    origin: "https://soclienttest.onrender.com",
+    origin: "https://soclienttest.onrender.com:5000",
   },
 });
  let onlineUsers = [];
