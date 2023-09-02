@@ -1,8 +1,9 @@
 const { Server } = require( "socket.io")
-
+const express = require('express')
+const app = express()
 const io = new Server({
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://soclienttest.onrender.com:3000",
   },
 });
 let onlineUsers = [];
@@ -48,5 +49,16 @@ io.on("connection", (socket) => {
 
 });
 
+app.get('/',async (req, res) => {
+  
 
-  io.listen(5000);
+    res.send("success");
+  
+
+})
+
+io.listen(5000)
+app.listen(3001, () => {
+  console.log("Server is running")
+})
+  
