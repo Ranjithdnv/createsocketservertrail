@@ -57,7 +57,7 @@ app.get('/',async (req, res) => {
 
 })
 
- io.listen(5000)
+//  io.listen(5000)
 app.listen(3001, () => {
   console.log("Server is running")
 })
