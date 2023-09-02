@@ -1,11 +1,11 @@
 const { Server } = require( "socket.io")
 const express = require('express')
 const app = express()
- //const io = new Server({
-//   cors: {
-//     origin: "https://soclienttest.onrender.com:3000",
-//   },
-// });
+ const io = new Server({
+  cors: {
+    origin: "https://soclienttest.onrender.com:3000",
+  },
+});
 // let onlineUsers = [];
 
 // const addNewUser = (username, socketId) => {
@@ -57,7 +57,7 @@ app.get('/',async (req, res) => {
 
 })
 
-io.listen(5000)
+ io.listen(5000)
 app.listen(3001, () => {
   console.log("Server is running")
 })
