@@ -6,12 +6,12 @@ const app = express()
     origin: "https://soclienttest.onrender.com:3000",
   },
 });
-// let onlineUsers = [];
+ let onlineUsers = [];
 
-// const addNewUser = (username, socketId) => {
-//   !onlineUsers.some((user) => user.username === username) &&
-//     onlineUsers.push({ username, socketId });
-// };
+const addNewUser = (username, socketId) => {
+  !onlineUsers.some((user) => user.username === username) &&
+    onlineUsers.push({ username, socketId });
+};
 // const getUser = (username) => {
 //   return onlineUsers.find((user) => user.username === username);
 // };
@@ -19,14 +19,14 @@ const app = express()
 //   onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
 // };
 
-// io.on("connection", (socket) => {
-//   socket.on("newUser", (username) => {
-//     addNewUser(username, socket.id);
+io.on("connection", (socket) => {
+  socket.on("newUser", (username) => {
+    addNewUser(username, socket.id);
 
 
 
-//     console.log(onlineUsers)
-//   })
+    console.log(onlineUsers)
+  })
 //   socket.on("sendText", ({ senderName, receiverName, text }) => {
 //     const receiver = getUser(receiverName);
 //     console.log(receiver)
@@ -47,7 +47,7 @@ const app = express()
    
 //   });
 
-// });
+});
 
 app.get('/',async (req, res) => {
   
