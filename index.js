@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
  const io = new Server({
   cors: {
-    origin: "https://soclienttest.onrender.com:5000",
+    origin: "https://soclienttest.onrender.com:3002",
   },
 });
  let onlineUsers = [];
@@ -57,7 +57,7 @@ app.get('/',async (req, res) => {
 
 })
 
-//  io.listen(5000)
+ io.listen(3002)
 app.listen(3001, () => {
   console.log("Server is running")
 })
