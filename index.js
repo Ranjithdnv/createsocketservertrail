@@ -2,7 +2,7 @@ const { Server } = require( "socket.io")
 
 const io = new Server({
   cors: {
-    origin: "https://soclienttest.onrender.com/",
+    origin: "http://localhost:3000",
   },
 });
 let onlineUsers = [];
