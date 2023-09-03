@@ -12,7 +12,7 @@ const app = express()
 const server = http.createServer(app)
 const io = require("socket.io")(server, {
 	cors: {
-		origin: "https://soclienttest.onrender.com:5000",
+		origin: "https://soclienttest.onrender.com",
 		methods: [ "GET", "POST" ]
 	}
 })
