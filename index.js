@@ -69,7 +69,5 @@ app.get('/',async (req, res) => {
 })
 
 //  io.listen(3002)
-// app.listen(3001, () => {
-//   console.log("Server is running")
-// })
+
 server.listen(5000, () => console.log("server is running on port 5000"))
