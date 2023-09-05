@@ -12,7 +12,7 @@ const app = express();
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000", //https://future-together.onrender.com    //https://soclienttest.onrender.com
+    origin: "https://future-together.onrender.com", //https://future-together.onrender.com    //https://soclienttest.onrender.com
     methods: ["GET", "POST"],
   },
 });
@@ -45,6 +45,8 @@ io.on("connection", (socket) => {
 
     io.to(receiver?.socketId).emit("getText", {
       senderName,
+      mid: "1",
+      mname: "ranjithkumar",
       mname: text,
     });
   });
