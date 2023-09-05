@@ -6,18 +6,18 @@
 //     origin: "https://soclienttest.onrender.com:3002",
 //   },
 // });
-const express = require("express")
-const http = require("http")
-const app = express()
-const server = http.createServer(app)
+const express = require("express");
+const http = require("http");
+const app = express();
+const server = http.createServer(app);
 const io = require("socket.io")(server, {
-	cors: {
-		origin: "https://future-together.onrender.com",//https://future-together.onrender.com    //https://soclienttest.onrender.com
-		methods: [ "GET", "POST" ]
-	}
-})
+  cors: {
+    origin: "http://localhost:3000", //https://future-together.onrender.com    //https://soclienttest.onrender.com
+    methods: ["GET", "POST"],
+  },
+});
 
- let onlineUsers = [];
+let onlineUsers = [];
 
 const addNewUser = (username, socketId) => {
   !onlineUsers.some((user) => user.username === username) &&
@@ -34,40 +34,31 @@ io.on("connection", (socket) => {
   socket.on("newUser", (username) => {
     addNewUser(username, socket.id);
 
-
-
-    console.log(onlineUsers)
-  })
+    console.log(onlineUsers);
+  });
   socket.on("sendText", ({ senderName, receiverName, text }) => {
     const receiver = getUser(receiverName);
-    console.log(receiver)
-    console.log(senderName)
-    console.log(receiverName)
-    console.log(text)
-
+    console.log(receiver);
+    console.log(senderName);
+    console.log(receiverName);
+    console.log(text);
 
     io.to(receiver?.socketId).emit("getText", {
       senderName,
-      text,
+      mname: text,
     });
   });
- 
+
   socket.on("disconnect", () => {
     removeUser(socket.id);
-    console.log(onlineUsers)
-   
+    console.log(onlineUsers);
   });
-
 });
 
-app.get('/',async (req, res) => {
-  
+app.get("/", async (req, res) => {
+  res.send("success");
+});
 
-    res.send("success");
-  
+// io.listen(3002);
 
-})
-
-//  io.listen(3002)
-
-server.listen(5000, () => console.log("server is running on port 5000"))
+server.listen(5000, () => console.log("server is running on port 5000"));
