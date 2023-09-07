@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
     console.log(message);
     console.log(mname);
     console.log(mid);
-    // console.log(text);
+    console.log("socket-get");
 
     io.to(receiver?.socketId).emit("getText", {
       message: message,
