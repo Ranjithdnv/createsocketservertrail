@@ -3,7 +3,7 @@
 // const app = express();
 // const io = new Server({
 //   cors: {
-//     origin: "http://localhost:3000",
+//     origin: "http://localhost:3001",
 //   },
 // });
 //---
@@ -32,17 +32,19 @@ const removeUser = (socketId) => {
 };
 
 io.on("connection", (socket) => {
-  socket.on("newUser", (username) => {
-    addNewUser(username, socket.id);
-
+  socket.on("newUser", (mid) => {
+    // addNewUser(username, socket.id);
+    addNewUser(mid, socket.id);
+    console.log(0);
     console.log(onlineUsers);
   });
   socket.on("sendText", ({ message, mname, mid }) => {
-    const receiver = getUser(mname);
+    const receiver = getUser(mid);
     console.log(message);
     console.log(mname);
     console.log(mid);
     console.log("socket-get");
+    console.log(receiver);
 
     io.to(receiver?.socketId).emit("getText", {
       message: message,
@@ -54,6 +56,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     removeUser(socket.id);
     console.log(onlineUsers);
+    console.log("deleted");
   });
 });
 
