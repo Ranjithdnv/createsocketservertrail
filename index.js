@@ -3,7 +3,7 @@
 // const app = express();
 // const io = new Server({
 //   cors: {
-//     origin: "http://localhost:3001",
+//     origin: "http://localhost:3000",
 //   },
 // });
 //---
@@ -35,9 +35,16 @@ io.on("connection", (socket) => {
   socket.on("newUser", (mid) => {
     // addNewUser(username, socket.id);
     addNewUser(mid, socket.id);
-    console.log(0);
+    // console.log(0);
     console.log(onlineUsers);
   });
+  // const a = 1;
+  socket.on("join", (a) => {
+    console.log(a);
+    socket.join(a);
+    // socket.to(a).emit("joinedroom", a);
+  });
+
   socket.on("sendText", ({ message, mname, mid }) => {
     const receiver = getUser(mid);
     console.log(message);
@@ -51,6 +58,11 @@ io.on("connection", (socket) => {
       mname: mname,
       mid: mid,
     });
+  });
+  socket.on("sendyourmessage", (data) => {
+    console.log(data);
+    console.log("srv");
+    socket.to(data?.mconv).emit("joinedroom", data);
   });
 
   socket.on("disconnect", () => {
