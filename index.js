@@ -13,7 +13,7 @@ const app = express();
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://future-together.onrender.com ", //https://future-together.onrender.com    //https://soclienttest.onrender.com
+    origin: "https://big-4bxu.onrender.com/ ", //https://future-together.onrender.com    //https://soclienttest.onrender.com //https://big-4bxu.onrender.com/
     methods: ["GET", "POST"],
   },
 });
