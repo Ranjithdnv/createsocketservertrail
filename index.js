@@ -1,22 +1,22 @@
-const { Server } = require("socket.io");
-const express = require("express");
-const app = express();
-const io = new Server({
-  cors: {
-    origin: "http://localhost:3000",
-  },
-});
-//---
+// const { Server } = require("socket.io");
 // const express = require("express");
-// const http = require("http");
 // const app = express();
-// const server = http.createServer(app);
-// const io = require("socket.io")(server, {
+// const io = new Server({
 //   cors: {
-//     origin: "https://big-4bxu.onrender.com", //https://future-together.onrender.com    //https://soclienttest.onrender.com //https://big-4bxu.onrender.com/
-//     methods: ["GET", "POST"],
+//     origin: "http://localhost:3000",
 //   },
 // });
+//---
+const express = require("express");
+const http = require("http");
+const app = express();
+const server = http.createServer(app);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "https://big-4bxu.onrender.com", //https://future-together.onrender.com    //https://soclienttest.onrender.com //https://big-4bxu.onrender.com/
+    methods: ["GET", "POST"],
+  },
+});
 
 let onlineUsers = [];
 
@@ -76,6 +76,6 @@ app.get("/", async (req, res) => {
   res.send("success");
 });
 
-io.listen(5000);
+//io.listen(5000);
 
-// server.listen(5000, () => console.log("server is running on port 5000"));
+server.listen(5000, () => console.log("server is running on port 5000"));
