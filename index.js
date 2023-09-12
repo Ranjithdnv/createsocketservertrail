@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
   socket.on("join", (a) => {
     console.log(a);
     socket.join(a);
-    // socket.to(a).emit("joinedroom", a);
+    socket.to(a).emit("joinedroom", a);
   });
 
   socket.on("sendText", ({ message, mname, mid }) => {
